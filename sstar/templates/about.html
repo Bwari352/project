@@ -1,0 +1,126 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block body %}
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2d0b00,  #00093c);
+            
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background-color: #333;
+            color: white;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+    
+ 
+{#    <section id="service-details" class="service-details section">#}
+    <section class="container mt-5 mb-2">
+        <section class="about">
+            <h1>About  Sstar Insurance,</h1>
+            <div class="tabs">
+            {% for tabheader in tabheader %}
+                <button class="tab{% if forloop.first %} active {% endif %}  " onclick="showContent('{{ tabheader.button_name }}')">{{ tabheader.button_name }}</button>
+            {% endfor %}
+            </div>
+           {% for tab in tab %}
+            <div id="{{ tab.button_name }}" class="content {% if forloop.first %} active {% endif %}">
+                <p>{{ tab.description | safe }}</p>
+                <img src="{{ tab.image.url }}" alt="" class="img-fluid">
+            </div>
+         {% endfor %}
+        </section>
+  
+    <script>
+        function showContent(section) {
+            // Hide all content sections
+            document.querySelectorAll('.content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            // Show selected content section
+            document.getElementById(section).classList.add('active');
+            // Add active class to selected tab
+            document.querySelector(`button[onclick="showContent('${section}')"]`).classList.add('active');
+        }
+    </script>
+    
+   
+    </section>
+    <br>
+{% endblock %}

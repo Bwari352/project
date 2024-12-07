@@ -1,0 +1,179 @@
+{% load static %}
+
+
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Arsha Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+      
+</head>
+
+<body>
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Sstar</h1>
+      </a>
+       
+        <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="dropdown"><a href="{% url 'about' %}"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+                <li><a href="#">Dropdown 1</a></li>
+                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">Deep Dropdown 1</a></li>
+                        <li><a href="#">Deep Dropdown 2</a></li>
+                        <li><a href="#">Deep Dropdown 3</a></li>
+                        <li><a href="#">Deep Dropdown 4</a></li>
+                        <li><a href="#">Deep Dropdown 5</a></li>
+                    </ul>
+              </li>
+                <li><a href="#">Dropdown 2</a></li>
+                <li><a href="#">Dropdown 3</a></li>
+                <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+       
+    
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+
+{#        <a class="btn-getstarted" href="{% url 'register' %}">Register</a>#}
+        
+        {% if user.is_authenticated %}
+            <a class="btn-getstarted" href="{% url 'logout' %}">Logout</a>
+       {% else %}
+            <a class="btn-getstarted" href="{% url 'login' %}">Login</a>
+            <a class="btn-getstarted" href="{% url 'register' %}">Register</a>
+
+        {% endif %}
+    
+    </div>
+  </header>
+    
+
+    {% if messages %}
+     {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+
+    {% endif %}
+
+
+   
+   {% block body %} {% endblock %}
+      
+      <footer>
+          <div class="row-footer">
+              <div class="col-footer">
+                  <img src="{% static 'assets/img/logo2.png' %}" class="logo-footer"> 
+                  <p> Welcome to our website</p>
+              </div> 
+              <div class="col-footer">
+                  <h3>Location <div class="underline"><span></span></div></h3>
+                  <p>Section 58</p>
+                  <p>Nakuru, Nakuru East</p>
+                  <p>Nakuru, 20100</p>
+                  <p class="email-id-footer">Sstarinsurance@gmail.com</p>
+                  <h5>+254 - 759092992</h5>
+              </div>
+               <div class="col-footer">
+                   <h3>Links <div class="underline"><span></span></div></h3>
+                   <ul>
+                       <li><a href="{% url 'home' %}">Home</a></li>
+                       <li><a href="{% url 'services' %}">Services</a></li>
+                       <li><a href="{% url 'about' %}">About Us</a></li>
+                       <li><a href="">Contacts</a></li>
+                   </ul>
+               </div>
+               <div class="col-footer">
+                   <h3>Newsletter<div class="underline"><span></span></div></h3>
+                   <form>
+                       <ion-icon class="far fa-envelope" name="mail-outline"></ion-icon>
+                       <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><ion-icon class="fas fa-arrow-right" name="arrow-forward-outline"></ion-icon></button>
+                   </form>
+                   <div class="social-icons">
+                       <ion-icon class="fab fa-bi-facebook" name="logo-facebook"></ion-icon>
+                       <ion-icon class="fab fa-instagram" name="logo-instagram"></ion-icon>
+                       <ion-icon class="fab fa-linkedin" name="logo-linkedin"></ion-icon>
+                       <ion-icon class="fab fa-whatsapp" name="logo-whatsapp"></ion-icon>
+                   </div>
+               </div>
+              
+          </div>
+          <hr>
+          <p class="copyright">All rights Reserved | Sstar Team @ 2024</p>
+      </footer>
+      
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+
+  <!-- Main JS File -->
+{#      <script scr="https://kit.fonntawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>#}
+      <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+      <script src="{% static  'assets/js/particles.js' %} " ></script>
+      <script src="{% static  'assets/js/app.js' %}" ></script>  
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+      <script src="{% static 'assets/js/main.js' %}"></script>
+  <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+  </script>
+  
+    
+   
+</body>
+</html>

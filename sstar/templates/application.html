@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+  
+   
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
+    <div class="container">
+
+        {% for message in messages %}
+        {% if message %}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                var m = "{{ message }}";
+                swal (
+                  "successfully", m, "success"
+                );
+
+            </script>
+        {% endif %}
+        {% endfor %}
+        </div>
+    
+    
+    <main class="main" >
+    
+    
+    
+<section id="application" >
+                             <div class=" container-form  ">
+
+                                 <div class="title " style="text-align: center; font-size: 24px; font-weight:600;" > Application Insurance Form</div>
+                                 <br>
+                         
+                                 <form action="/application/"  method="post" enctype="multipart/form-data"  autocomplete="off" novalidate>
+
+{#                             to secure the form#}
+                                     {% csrf_token %}
+                                     {{ form.media }}
+
+                                     <div class="row">
+                                         <div class="col-md-6">{{ form.name | as_crispy_field }}</div>
+                                         <div class="col-md-6">{{ form.email | as_crispy_field }}</div>
+
+                                     </div>
+                         
+
+                                     <div class="row">
+                                         <div class="col-md-6">{{ form.resident | as_crispy_field }}</div>
+                                         <div class="col-md-6">{{ form.national_id | as_crispy_field }}</div>
+
+                                     </div>
+
+                                     <div class="row">
+                                         <div class="col-md-6">{{ form.insurance_duration | as_crispy_field }}</div>
+                                         <div class="col-md-6">{{ form.business_type| as_crispy_field }}</div>
+
+                                     </div>
+                             
+                                     <div class="row">
+                                         <div class="col-md-6">{{ form.license | as_crispy_field }}</div>
+                                 
+                                     </div>
+                             
+                             
+                                     <div class="row">
+                                         <div class="col-md-12" >{{ form.about| as_crispy_field }}</div>
+
+                                     </div>
+                             
+                                     <div class="row">
+                                         <div class="col-md-12 d-flex justify-content-center align-items-center"><button class="button" style="height: 100%; width:100%; outline:none; border-radius:5px; background: linear-gradient(135deg, #71b7e6,black);font-weight:500;font-size:18px;letter-spacing:1px;border:none; " >submit</button></div>
+
+                                     </div>
+
+                             
+
+                                 </form>
+
+
+                             
+                             </div>
+</section>      
+    </main>
+    {% endblock %}

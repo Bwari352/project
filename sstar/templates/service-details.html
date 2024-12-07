@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+    
+       <style>
+       
+    .container{
+
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+    .card__container{
+        padding-block: 5rem;
+
+    }
+    .card__content{
+        margin-inline: 1.75rem;
+        border-radius: 1.25rem;
+        overflow: hidden;
+
+    }
+    .card__article{
+        width: 300px;
+        border-radius: 1.25rem;
+        overflow: hidden;
+
+    }
+    .card__image{
+        position: relative;
+        background-color: wheat;
+        padding-top: 1.5rem;
+        margin-bottom: -.75rem;
+
+    }
+    .card__data{
+        background-color: maroon;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+
+    }
+    .card__img{
+        width: 180px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
+
+    }
+    </style>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade" style="background: linear-gradient(to right, #00093c, #2d0b00) ">
+      <div class="container">
+           <h1>Services</h1>
+        <nav class="breadcrumbs">
+           
+        </nav>
+       
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Service Details Section -->
+
+        <section class="container">
+            <div class="card__container swiper" >
+                <div class="card__content">
+                    <div class="swiper-wrapper">
+                
+             {% for insurance in insurance %}
+              <article class="card__article swiper-slide">
+                  <div class="card__image">
+                      <img src="{{ insurance.image.url }}" alt="" class="card__img">
+                      <div class="card__shadow"></div>
+                  </div>
+                  
+                  <div class="card__data">
+                      <h3 class="card__name">{{  insurance.name}}</h3>
+                      <p class="card__description">
+                          {{ insurance.description|safe }}
+                      </p>
+                      <a href="{% url 'insurance' insurance.id %}" class="card__button">View Insurance</a>
+                  </div>
+              </article>
+              {% endfor %}
+             
+             </div>   
+         </div>
+           {#<!-- navigation buttons -->#}
+         <div class="swiper-button-prev">
+             <i class="ri-arrow-left-s-line"></i>
+         </div>
+         <div class="swiper-button-next">
+             <i class="ri-arrow-right-s-line"></i>
+         </div>
+         {#<!--pagination-->#}
+          <div class="swiper-pagination"></div>
+     </div>
+     
+    </section>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.7/swiper-bundle.min.js" integrity="sha256-9kWxLyfE6cEhDVclz6iUuGRkNy57G+y+RxJqX+gvmt4=" crossorigin="anonymous"></script>
+      <script>
+      let swiperCards = new Swiper('.card__content', {
+          loop: true,
+          spaceBetween: -32,
+          grabCursor: true,
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              dynamicBullets: true,
+          },
+
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+
+          breakpoints:{
+              600:{
+                  slidesPerView: 2,
+              },
+              968:{
+                  slidesPerView: 3,
+              },
+          },
+
+      });
+      </script>
+  </main>
+
+  {% endblock %}
+
+
+

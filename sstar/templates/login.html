@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block body %}
+
+    <section class="register">
+        <div class="form-container mt-5">
+            <div class="col col-1">
+                <div class="image-layer">
+                    <img src="{% static 'assets/img/stars.png' %}" class="form-image-stars" >
+                    <img src="{% static 'assets/img/logo2.png' %}" class="form-image-logo" style="width:20%;">
+                </div>
+                <p class="text-words" >Insuring Trust With <span>Us</span></p>
+            </div>
+        
+            <!-- Login Form Container -->
+            <div class="col col-2">
+                <div class="btn-box">
+                    <button class="btn btn-1" id=" login"><a href="{%  url 'login' %}">Login</a></button>
+                    <button class="btn btn-2" id="register"><a href="{%  url 'register' %}">Register</a></button>
+                </div>
+              
+                <form method="post" action="{% url 'login' %}" class="login-form">
+                  {% csrf_token %}
+                    
+                    <div class="form-title">
+                    <span>Login</span>
+                    </div>
+                    
+                    <div class="form-inputs">
+                        <div class="input-box">
+                            <input type="text" class="form-control" placeholder="Username" required>
+                            <ion-icon class="icon" name="person-outline"></ion-icon>
+                        </div>
+                        <br>
+                        <div class="input-box">
+                            <input type="password" class="form-control" placeholder="Password" required>
+                            <ion-icon class="icon" name="bag-remove-outline"></ion-icon>
+                        </div>
+                        <div class="forgot-pass">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                        <br>
+                        <div class="input-box">
+                            <button class="input-submit">
+                                <span>Login</span>
+                                <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                    <div class="social-login">
+                        <ion-icon class="i" name="logo-facebook"></ion-icon>
+                        <ion-icon class="i" name="logo-instagram"></ion-icon>
+                        <ion-icon class="i" name="logo-linkedin"></ion-icon>
+                        <ion-icon class="i" name="logo-whatsapp"></ion-icon>
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+</section>
+{% endblock %}
